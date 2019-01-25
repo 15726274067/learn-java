@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.zhutao</groupId>
+    <artifactId>learn-java</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>chapter1-java-core</module>
+        <module>chapter2-spring</module>
+        <module>chapter3-jdbc</module>
+        <module>chapter4-mybatis</module>
+        <module>chapter5-springMvc</module>
+        <module>chapter6-springboot</module>
+        <module>chapter7-redis</module>
+        <module>chapter8-mq</module>
+        <module>chapter9-elasticsearch</module>
+        <module>chapter10-dubbo</module>
+        <module>chapter11-zookeeper</module>
+    </modules>
+
+
+</project>
