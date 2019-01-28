@@ -1,6 +1,6 @@
-package com.zhutao.javacore.interface_.abst;
+package com.zhutao.interface_.abst;
 
-import com.zhutao.javacore.interface_.UserService;
+import com.zhutao.interface_.UserService;
 
 /**
  * 抽象类可以只实现部分接口

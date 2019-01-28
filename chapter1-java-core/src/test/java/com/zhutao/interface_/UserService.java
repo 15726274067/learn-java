@@ -1,4 +1,4 @@
-package com.zhutao.javacore.interface_;
+package com.zhutao.interface_;
 
 /**
  * @Author: zhutao

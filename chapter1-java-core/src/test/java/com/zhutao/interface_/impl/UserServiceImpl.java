@@ -1,6 +1,6 @@
-package com.zhutao.javacore.interface_.impl;
+package com.zhutao.interface_.impl;
 
-import com.zhutao.javacore.interface_.UserService;
+import com.zhutao.interface_.UserService;
 
 /**
  * @Author: zhutao

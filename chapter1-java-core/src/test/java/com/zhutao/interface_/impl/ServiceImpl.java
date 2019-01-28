@@ -1,7 +1,7 @@
-package com.zhutao.javacore.interface_.impl;
+package com.zhutao.interface_.impl;
 
-import com.zhutao.javacore.interface_.BookService;
-import com.zhutao.javacore.interface_.UserService;
+import com.zhutao.interface_.BookService;
+import com.zhutao.interface_.UserService;
 
 /**
  * 实现两个接口, 接口中方法有重名的情况

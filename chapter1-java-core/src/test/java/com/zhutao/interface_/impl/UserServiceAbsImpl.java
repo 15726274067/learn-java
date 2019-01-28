@@ -1,7 +1,6 @@
-package com.zhutao.javacore.interface_.impl;
+package com.zhutao.interface_.impl;
 
-import com.zhutao.javacore.interface_.UserService;
-import com.zhutao.javacore.interface_.abst.UserServiceAbst;
+import com.zhutao.interface_.abst.UserServiceAbst;
 
 import java.io.Serializable;
 
