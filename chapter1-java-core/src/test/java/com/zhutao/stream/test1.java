@@ -63,10 +63,10 @@ public class test1 {
         /**
          * 并行流实现并行计算
          */
-        Long countByParalleStream = words.parallelStream()
+        Long countByParallelStream = words.parallelStream()
                 .filter(word -> word.length()>length)
                 .count();
-        System.out.println("countByParalleStream: " + countByParalleStream);
+        System.out.println("countByParallelStream: " + countByParallelStream);
 
     }
 
