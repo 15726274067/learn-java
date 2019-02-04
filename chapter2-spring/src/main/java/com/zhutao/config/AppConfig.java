@@ -3,10 +3,8 @@ package com.zhutao.config;
 import com.zhutao.pojo.User;
 import org.apache.commons.dbcp2.BasicDataSourceFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Conditional;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.*;
 
 import javax.sql.DataSource;
 import java.util.Properties;
@@ -45,8 +43,11 @@ public class AppConfig {
      * 某些情况下不希望Ioc去进行bean的自动装配
      * 见package com.zhutao.condition
      * 条件装配如果错过自动装配,如何处理?
+     *
+     * bean的作用域
      */
     @Bean(value = "dataSource")
+    @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
     public DataSource getDataSource(
             @Value("${database.driverName}") String driverName,
             @Value("${database.url}") String url,
