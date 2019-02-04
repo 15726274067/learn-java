@@ -1,4 +1,4 @@
-package com.zhutao;
+package com.zhutao.ioc;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

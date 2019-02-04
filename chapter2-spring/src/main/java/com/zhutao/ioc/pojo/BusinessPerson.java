@@ -1,7 +1,7 @@
-package com.zhutao.pojo;
+package com.zhutao.ioc.pojo;
 
-import com.zhutao.pojo.definition.Animal;
-import com.zhutao.pojo.definition.Person;
+import com.zhutao.ioc.pojo.definition.Animal;
+import com.zhutao.ioc.pojo.definition.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;

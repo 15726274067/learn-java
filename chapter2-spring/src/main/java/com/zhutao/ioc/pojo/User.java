@@ -1,4 +1,4 @@
-package com.zhutao.pojo;
+package com.zhutao.ioc.pojo;
 
 import java.text.MessageFormat;
 

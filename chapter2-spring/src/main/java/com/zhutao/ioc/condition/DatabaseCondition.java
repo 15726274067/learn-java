@@ -1,4 +1,4 @@
-package com.zhutao.condition;
+package com.zhutao.ioc.condition;
 
 import org.springframework.context.annotation.Condition;
 import org.springframework.context.annotation.ConditionContext;

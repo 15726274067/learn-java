@@ -1,4 +1,4 @@
-package com.zhutao.life;
+package com.zhutao.ioc.life;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;

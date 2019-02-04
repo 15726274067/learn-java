@@ -1,4 +1,4 @@
-package com.zhutao.pojo;
+package com.zhutao.ioc.pojo;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.*;

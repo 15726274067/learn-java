@@ -1,6 +1,6 @@
-package com.zhutao.pojo;
+package com.zhutao.ioc.pojo;
 
-import com.zhutao.pojo.definition.Animal;
+import com.zhutao.ioc.pojo.definition.Animal;
 import org.springframework.stereotype.Component;
 
 /**

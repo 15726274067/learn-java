@@ -1,4 +1,4 @@
-package com.zhutao.pojo.definition;
+package com.zhutao.ioc.pojo.definition;
 
 /**
  * @Author: zhutao

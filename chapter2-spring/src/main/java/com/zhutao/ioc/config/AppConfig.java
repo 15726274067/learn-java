@@ -1,6 +1,7 @@
-package com.zhutao.config;
+package com.zhutao.ioc.config;
 
-import com.zhutao.pojo.User;
+import com.zhutao.ioc.condition.DatabaseCondition;
+import com.zhutao.ioc.pojo.User;
 import org.apache.commons.dbcp2.BasicDataSourceFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -24,7 +25,7 @@ public class AppConfig {
      * 将bean装配到spring的第一种方法
      * 将 initUser 方法返回的 POJO 装配到 IoC 容器中 @Bean注解
      * 如果没有配置,则将方法名称“initUser”作为 Bean 的名称保存到 Spring IoC 容器中
-     * @return
+     * @return user
      */
     @Bean(name = "user")
     public User initUser(){
@@ -41,12 +42,13 @@ public class AppConfig {
      *
      * 条件装配
      * 某些情况下不希望Ioc去进行bean的自动装配
-     * 见package com.zhutao.condition
+     * 见package com.zhutao.ioc.condition
      * 条件装配如果错过自动装配,如何处理?
      *
      * bean的作用域
      */
     @Bean(value = "dataSource")
+    @Conditional({DatabaseCondition.class})
     @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
     public DataSource getDataSource(
             @Value("${database.driverName}") String driverName,

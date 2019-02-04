@@ -1,11 +1,11 @@
-package com.zhutao.config;
+package com.zhutao.ioc.config;
 
-import com.zhutao.pojo.Book;
-import com.zhutao.pojo.DataBaseProperties;
-import com.zhutao.pojo.DataBaseProperties2;
-import com.zhutao.pojo.User;
-import com.zhutao.pojo.definition.Person;
-import com.zhutao.service.UserService;
+import com.zhutao.ioc.pojo.Book;
+import com.zhutao.ioc.pojo.DataBaseProperties;
+import com.zhutao.ioc.pojo.DataBaseProperties2;
+import com.zhutao.ioc.pojo.User;
+import com.zhutao.ioc.pojo.definition.Person;
+import com.zhutao.ioc.service.UserService;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -30,7 +30,7 @@ public class IocTest {
         /**
          * 如果bean没有装配到spring,在试图获得对象时会报错
          * org.springframework.beans.factory.NoSuchBeanDefinitionException:
-         * No qualifying bean of type 'com.zhutao.pojo.Book' available
+         * No qualifying bean of type 'com.zhutao.ioc.pojo.Book' available
          */
         Book book = context.getBean(Book.class);
         System.out.println(book);
