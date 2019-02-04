@@ -1,6 +1,8 @@
 package com.zhutao.config;
 
 import com.zhutao.pojo.Book;
+import com.zhutao.pojo.DataBaseProperties;
+import com.zhutao.pojo.DataBaseProperties2;
 import com.zhutao.pojo.User;
 import com.zhutao.pojo.definition.Person;
 import com.zhutao.service.UserService;
@@ -38,5 +40,11 @@ public class IocTest {
 
         Person person = context.getBean(Person.class);
         person.service();
+
+        DataBaseProperties dataBaseProperties = context.getBean(DataBaseProperties.class);
+        System.out.println(dataBaseProperties.toString());
+
+        DataBaseProperties2 dataBaseProperties2 = context.getBean(DataBaseProperties2.class);
+        System.out.println(dataBaseProperties2.toString());
     }
 }

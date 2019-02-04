@@ -1,9 +1,15 @@
 package com.zhutao.config;
 
 import com.zhutao.pojo.User;
+import org.apache.commons.dbcp2.BasicDataSourceFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Configuration;
+
+import javax.sql.DataSource;
+import java.util.Properties;
 
 /**
  * ＠Configuration 代表这是一个 Java 配置文件,Spring 的容器会根据
@@ -34,20 +40,29 @@ public class AppConfig {
     /**
      * 自定义第三方bean
      * 这里是把dbcp datasource 引进spring中
+     *
+     * 条件装配
+     * 某些情况下不希望Ioc去进行bean的自动装配
+     * 见package com.zhutao.condition
+     * 条件装配如果错过自动装配,如何处理?
      */
-//    @Bean("dataSource")
-//    public DataSource getDataSource(){
-//        Properties prop = new Properties();
-//        prop.setProperty("driver", "com.mysql.jdbc.Driver");
-//        prop.setProperty("url", "jdbc:mysql://localhost:3306/test");
-//        prop.setProperty("username", "admin");
-//        prop.setProperty("password", "qwe121324");
-//        DataSource dataSource = null ;
-//        try {
-//            dataSource = BasicDataSourceFactory.createDataSource(prop);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return dataSource;
-//    }
+    @Bean(value = "dataSource")
+    public DataSource getDataSource(
+            @Value("${database.driverName}") String driverName,
+            @Value("${database.url}") String url,
+            @Value("${database.username}") String username,
+            @Value("${database.password}") String password){
+        Properties prop = new Properties();
+        prop.setProperty("driver", driverName);
+        prop.setProperty("url", url);
+        prop.setProperty("username", username);
+        prop.setProperty("password", password);
+        DataSource dataSource = null ;
+        try {
+            dataSource = BasicDataSourceFactory.createDataSource(prop);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return dataSource;
+    }
 }
