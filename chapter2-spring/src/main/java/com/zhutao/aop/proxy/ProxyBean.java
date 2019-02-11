@@ -43,6 +43,14 @@ public class ProxyBean implements InvocationHandler {
         return proxy;
     }
 
+    /**
+     * 使用代理对象,调用方法时,会进入到这里
+     * 动态代理的核心
+     * @param proxy
+     * @param method
+     * @param args
+     * @return
+     */
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) {
         boolean exceptFlag = false;

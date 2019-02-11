@@ -13,7 +13,7 @@ public class MyInterceptor implements Interceptor {
     @Override
     public boolean before() {
         System.out.println("before... " + this.getClass().getName());
-        return true;
+        return this.useAround();
     }
 
     @Override

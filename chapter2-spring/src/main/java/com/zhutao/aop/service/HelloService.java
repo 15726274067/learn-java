@@ -7,4 +7,6 @@ package com.zhutao.aop.service;
  */
 public interface HelloService {
     public void sayHello(String name);
+
+    public void print(String name);
 }
