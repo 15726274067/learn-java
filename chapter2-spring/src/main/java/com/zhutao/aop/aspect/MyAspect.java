@@ -2,8 +2,11 @@ package com.zhutao.aop.aspect;
 
 import com.zhutao.aop.validator.HelloValidator;
 import com.zhutao.aop.validator.impl.HelloValidatorImpl;
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
+
+import java.util.Arrays;
 
 /**
  * @Author: zhutao
@@ -28,14 +31,26 @@ public class MyAspect {
     }
 
 
-    @Before("pointcut()")
-    public void before(){
-        System.out.println("before...");
+    /**
+     * 前置通知
+     *
+     * 获取参数
+     * 1. args()
+     */
+    @Before("pointcut() && args(name)")
+    public void before(String name){
+        System.out.println("before..." + name);
     }
 
+    /**
+     * 获取参数
+     * 2. 使用joinPoint的getArgs()
+     * @param joinPoint
+     */
     @After("pointcut()")
-    public void after(){
-        System.out.println("after...");
+    public void after(JoinPoint joinPoint){
+        Object[] args = joinPoint.getArgs();
+        System.out.println("after..." + Arrays.toString(args));
     }
 
     @AfterReturning(pointcut = "pointcut()")
