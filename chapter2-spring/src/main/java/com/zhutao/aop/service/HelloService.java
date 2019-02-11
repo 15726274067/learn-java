@@ -9,4 +9,6 @@ public interface HelloService {
     public void sayHello(String name);
 
     public void print(String name);
+
+    void manyAspects();
 }

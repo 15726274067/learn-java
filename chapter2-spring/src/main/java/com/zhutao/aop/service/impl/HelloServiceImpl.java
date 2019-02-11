@@ -25,4 +25,8 @@ public class HelloServiceImpl implements HelloService {
         }
         System.out.println("print: " + name);
     }
+
+    public void manyAspects(){
+        System.out.println("多个切面...");
+    }
 }

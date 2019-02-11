@@ -43,4 +43,11 @@ public class HelloController {
         hashMap.put("name", name);
         return hashMap;
     }
+
+    @GetMapping("/aspects")
+    @ResponseBody
+    public String manyAspects(){
+        helloService.manyAspects();
+        return "Aspect";
+    }
 }
