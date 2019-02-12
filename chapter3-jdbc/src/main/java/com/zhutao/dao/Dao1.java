@@ -1,7 +1,5 @@
 package com.zhutao.dao;
 
-import com.mysql.cj.jdbc.MysqlSavepoint;
-
 import java.sql.*;
 
 /**
@@ -37,6 +35,8 @@ public class Dao1 {
         // 3. 定义sql
         String sql = "update t_user set `note` = 'hahaha' where id = 1";
 
+        String sql2 = "select * from t_user where id = 1";
+
         /**
          * 4.获取执行sql的对象statement/PreparedStatement
          */
@@ -47,10 +47,15 @@ public class Dao1 {
          */
         int count = statement.executeUpdate(sql);
 
+        ResultSet resultset = statement.executeQuery(sql2);
+
         /**
          * 6. 处理结果
          */
-        System.out.println(count);
+        while (resultset.next()){
+            System.out.println("id: " + resultset.getLong("id"));
+        }
+        System.out.println("count: " + count);
 
         /**
          * 7. 释放资源
