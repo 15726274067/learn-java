@@ -26,4 +26,88 @@ autoMapping: 自动映射等级为启用下,对当前resultMap, 不进行自动�
     <select id="getUser2" parameterType="long" resultMap="userResultMap">
         select <include refid="userColumns"/> from t_user where id=#{id}
     </select>
+
+    <!--
+        模糊查询
+		[${}]：表示拼接SQL字符串
+	 	[${value}]：表示要拼接的是简单类型参数。
+		 注意：
+		1、如果参数为简单类型时，${}里面的参数名称必须为value
+		2、${}会引起SQL注入，一般情况下不推荐使用。但是有些场景必须使用${}，比如order by ${colname}
+	-->
+    <select id="getUserByName" parameterType="string" resultMap="userResultMap">
+      select <include refid="userColumns"/> from t_user where user_name like "${value}%"
+    </select>
+
+    <!--
+    	If标签：作为判断入参来使用的，如果符合条件，则把if标签体内的SQL拼接上。
+注意：用if进行判断是否为空时，不仅要判断null，也要判断空字符串‘’；
+    	Where标签：会去掉条件中的第一个and符号。
+    -->
+    <select id="getListByQuery" parameterType="userQueryVO" resultMap="userResultMap">
+        select <include refid="userColumns"/> from t_user
+          <where>
+            <if test="user.id != null">
+                id = #{user.id}
+            </if>
+            <if test="user.userName != null and user.userName != ''">
+                user_name = #{user.userName}
+            </if>
+            <if test="user.note != null">
+                note = #{user.note}
+            </if>
+            <if test="user.sex != null">
+                sex = #{user.sex}
+            </if>
+        </where> limit #{start}, #{end}
+    </select>
+
+    <!--
+        select * from t_user where id in ( 1, 2, 3)
+    -->
+    <select id="getListById" parameterType="list" resultMap="userResultMap">
+        select <include refid="userColumns"/> from t_user
+        <where>
+            <if test="list != null and list.size>0">
+                <foreach collection="list" separator="," open="and id in (" close=")" item="id">
+                    #{id}
+                </foreach>
+            </if>
+        </where>
+    </select>
+
+
+    <!--如果数据库支持自动生成主键的字段, 可以设置 useGeneratedKeys=”true”，然后再把 keyProperty 设置到目标属性上-->
+    <insert id="insertUser" parameterType="user" keyProperty="id" useGeneratedKeys="true">
+        insert into t_user (user_name, note, sex) values (#{userName}, #{note}, #{sex})
+    </insert>
+
+    <!--批量插入 数据库还支持多行插入, 你也可以传入一个user数组或集合，并返回自动生成的主键-->
+    <insert id="insertBatch" useGeneratedKeys="true" keyProperty="id">
+        insert into t_user (user_name, note, sex) values
+        <foreach collection="list" separator="," item="item">
+            (#{item.userName}, #{item.note}, #{item.sex})
+        </foreach>
+    </insert>
+
+    <delete id="removeUser" parameterType="long">
+        delete from t_user where id=#{value}
+    </delete>
+
+    <!--set 元素可以用于动态包含需要更新的列，而舍去其它的-->
+    <update id="updateUser" parameterType="user">
+        update t_user
+        <set>
+            <if test="userName != null">
+                user_name = #{name},
+            </if>
+            <if test="note != null">
+                note = #{note},
+            </if>
+            <if test="sex != null">
+                sex = #{sex}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
 </mapper>
