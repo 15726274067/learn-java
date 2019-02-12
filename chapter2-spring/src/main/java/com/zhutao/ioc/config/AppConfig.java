@@ -2,10 +2,12 @@ package com.zhutao.ioc.config;
 
 import com.zhutao.ioc.condition.DatabaseCondition;
 import com.zhutao.ioc.pojo.User;
+import org.apache.commons.dbcp2.BasicDataSource;
 import org.apache.commons.dbcp2.BasicDataSourceFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.*;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
 import java.util.Properties;
