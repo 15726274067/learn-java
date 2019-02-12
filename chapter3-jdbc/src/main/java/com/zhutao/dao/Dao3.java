@@ -1,5 +1,6 @@
 package com.zhutao.dao;
 
+import com.alibaba.druid.pool.DruidDataSourceFactory;
 import com.zhutao.config.AppConfig;
 import jdk.nashorn.internal.runtime.Property;
 import org.apache.commons.dbcp2.BasicDataSourceFactory;
@@ -8,6 +9,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Connection;
 import java.util.Properties;
 
 /**
@@ -40,5 +44,19 @@ public class Dao3 {
             e.printStackTrace();
         }
         return dataSource;
+    }
+
+    /**
+     * 数据量连接池 druid
+     * @return
+     * @throws Exception
+     */
+    @Bean("druid")
+    public DataSource getDruidDataSource() throws Exception {
+        Properties prop = new Properties();
+        InputStream inputStream = Dao3.class.getClassLoader().getResourceAsStream("druid.properties");
+        prop.load(inputStream);
+
+        return DruidDataSourceFactory.createDataSource(prop);
     }
 }
