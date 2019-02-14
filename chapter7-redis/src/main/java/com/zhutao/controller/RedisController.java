@@ -1,10 +1,8 @@
 package com.zhutao.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.redis.core.BoundHashOperations;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.dao.DataAccessException;
+import org.springframework.data.redis.core.*;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -126,6 +124,57 @@ public class RedisController {
         return result;
     }
 
+    @GetMapping("/trans")
+    public Map<String, Object> testTrans(){
 
+        String watchKey = "watchKey";
+        String key1 = "trans:key1";
+        String key2 = "trans:key2";
 
+        redisTemplate.opsForValue().set(watchKey, "value");
+        redisTemplate.execute(new SessionCallback() {
+            @Override
+            public Object execute(RedisOperations operations) throws DataAccessException {
+                redisTemplate.watch(watchKey);
+                redisTemplate.multi();
+                operations.opsForValue().set(key1, "value1");
+                operations.opsForValue().set(key2, "value2");
+                Object value1= operations.opsForValue().get("trans:key1");
+                System.out.println("命令在队列中,没有被执行,所以这里的值为null: " + value1);
+                redisTemplate.exec();
+                return null;
+            }
+        });
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("value", redisTemplate.opsForValue().get(key1));
+        map.put("value2", redisTemplate.opsForValue().get(key2));
+        return map;
+    }
+
+    @GetMapping("pipeline")
+    public Map<String, Object> testPipeLine(){
+        String key1 = "key";
+        Long start = System.currentTimeMillis();
+        
+        redisTemplate.executePipelined(new SessionCallback() {
+            @Override
+            public Object execute(RedisOperations operations) throws DataAccessException {
+                Object value = null;
+                for (int i=0; i<=100000; i++){
+                    operations.opsForValue().set(key1 + i, "value "+ i);
+                    value = operations.opsForValue().get(key1);
+                    if (i == 100000){
+                        System.out.println("命令只进入队列,值为空 " + value);
+                    }
+                }
+                return null;
+            }
+        });
+
+        Long end = System.currentTimeMillis();
+        Map<String, Object> map = new HashMap<>();
+        map.put("cost", end-start);
+        return map;
+    }
 }
