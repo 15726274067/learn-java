@@ -3,6 +3,8 @@ package com.zhutao.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.core.*;
+import org.springframework.data.redis.core.script.DefaultRedisScript;
+import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -175,6 +177,41 @@ public class RedisController {
         Long end = System.currentTimeMillis();
         Map<String, Object> map = new HashMap<>();
         map.put("cost", end-start);
+        return map;
+    }
+
+    @GetMapping("/sub")
+    public Map<String, Object> testSub(String message){
+        String topic = "test-topic";
+        // 发布消息
+        redisTemplate.convertAndSend(topic, message);
+        Map<String, Object> map = new HashMap<>();
+        map.put("reslut", "success");
+        return map;
+    }
+
+    /**
+     * redis执行lua脚本的两种方式
+     * 1. 直接发送lua到redis服务器去执行
+     * 2. 先把lua发送给redis,返回SHA1的32位编码,通过发送SHA1和相关参数执行,减少网络传输
+     * @return
+     */
+    @GetMapping("/lua")
+    public Map<String, Object> testLua(){
+        DefaultRedisScript redisScript = new DefaultRedisScript();
+        redisScript.setScriptText("return 'hello redis'");
+
+        // 定义返回类型, 这里如果不定义,将不会返回结果
+        redisScript.setResultType(String.class);
+
+        // 定义序列化器
+        RedisSerializer serializer = redisTemplate.getStringSerializer();
+
+        // 执行lua
+        String result = (String) redisTemplate.execute(redisScript, serializer, serializer, null);
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("result", result);
         return map;
     }
 }
