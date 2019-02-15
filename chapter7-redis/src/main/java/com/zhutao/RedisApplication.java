@@ -1,9 +1,10 @@
 package com.zhutao;
 
-import com.zhutao.listener.RedisMessageListener;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.redis.connection.MessageListener;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
@@ -13,10 +14,13 @@ import org.springframework.data.redis.listener.RedisMessageListenerContainer;
 import org.springframework.data.redis.listener.Topic;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
+import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
 
 @SpringBootApplication(scanBasePackages = "com.zhutao")
+@EnableCaching // 使用缓存管理器
+@MapperScan(basePackages = "com.zhutao", annotationClass = Repository.class)
 public class RedisApplication
 {
 
