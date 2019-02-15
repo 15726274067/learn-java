@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
      * @return
      */
     @Override
-    @Cacheable(value = "redisCache", key = "'redis:user:' + #id")
+    @Cacheable(value = "redisCache", key = "'user:' + #id")
     public User getUser(Long id) {
         return userDao.getUser(id);
     }
@@ -55,14 +55,14 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     @Transactional
-    @CachePut(value = "redisCache", key = "'redis:user:' + #result.id")
+    @CachePut(value = "redisCache", key = "'user:' + #result.id")
     public User insertUser(User user) {
         userDao.insertUser(user);
         return user;
     }
 
     // 更新数据后，更新缓存，如果 condition 配置项使结果返回为 null, 不缓存
-    @CachePut(value = "redisCache", key = "'redis:user:' + #id", condition = "#result!='null'")
+    @CachePut(value = "redisCache", key = "'user:' + #id", condition = "#result!='null'")
     public User updateUserName(Long id, String userName){
         /**
          * 这里直接调用缓存注解方法,缓存注解会失效(基于aop实现)
@@ -82,7 +82,7 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     @Transactional
-    @CacheEvict(value = "redisCache", key = "'redis:user:' + #id", beforeInvocation = false)
+    @CacheEvict(value = "redisCache", key = "'user:' + #id", beforeInvocation = false)
     public int deleteUser(Long id) {
         return userDao.deleteUser(id);
     }
