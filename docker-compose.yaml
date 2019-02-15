@@ -18,7 +18,7 @@ services:
     MYSQL_ROOT_PASSWORD: qwe121324
     MYSQL_ROOT_HOST: '%'
    ports:
-   - "3306:3306"
+   - "13306:13306"
    restart: always
 
   chapter4-mybatis:
