@@ -7,7 +7,7 @@
     <groupId>com.zhutao</groupId>
     <artifactId>learn-java</artifactId>
     <packaging>pom</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.1-SNAPSHOT</version>
     <modules>
         <module>chapter1-java-core</module>
         <module>chapter2-spring</module>
