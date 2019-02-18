@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
  * @Version 1.0
  */
 @Component
-@PropertySource(value = "classpath:application.properties")
+@PropertySource(value = "classpath:application.properties", ignoreResourceNotFound = true)
 @ConfigurationProperties("database")
 public class DataBaseProperties2 {
     private String driverName;

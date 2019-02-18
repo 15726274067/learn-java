@@ -1,6 +1,7 @@
 package com.zhutao.ioc.config;
 
 import com.zhutao.ioc.condition.DatabaseCondition;
+import com.zhutao.ioc.filter.MyFilter;
 import com.zhutao.ioc.pojo.User;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.apache.commons.dbcp2.BasicDataSourceFactory;
@@ -8,6 +9,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.*;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 
 import javax.sql.DataSource;
 import java.util.Properties;
@@ -15,11 +18,30 @@ import java.util.Properties;
 /**
  * ＠Configuration 代表这是一个 Java 配置文件,Spring 的容器会根据
  * 它来生成 IoC 容器去装配 Bean;
+ *
+ * 注解: @ComponentScan
+ * 扫描指定的包下的bean,将其注入到spring中
+ * 可以通过excludeFilters/includeFilters进行过滤
+ * 使用includeFilters时,要将useDefaultFilters设为false,禁止使用默认过滤器
+ * java8下时可重复注解: @Repeatable(ComponentScans.class)
+ * 非Java8使用@ComponentScans()
+ *
  * @Author: zhutao
  * @Date: 2019/1/31 17:33
  * @Version 1.0
  */
 @Configuration
+//@ComponentScan(basePackages = { "com.zhutao" },
+//        excludeFilters = {
+//        @ComponentScan.Filter( classes = { Controller.class }, type = FilterType.ANNOTATION)
+//        },
+//        includeFilters = {
+//        @ComponentScan.Filter( classes = {User.class}, type = FilterType.ASSIGNABLE_TYPE),
+//        @ComponentScan.Filter(classes = {MyFilter.class}, type = FilterType.CUSTOM)
+//        },
+//        useDefaultFilters = false)
+
+
 @ComponentScan(basePackages = { "com.zhutao" })
 public class AppConfig {
 

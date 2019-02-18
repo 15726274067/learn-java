@@ -3,9 +3,12 @@ package com.zhutao.ioc.pojo;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.*;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.WebApplicationContext;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -20,6 +23,7 @@ import javax.annotation.PreDestroy;
  * @Version 1.0
  */
 @Component(value = "book")
+//@Scope(WebApplicationContext.SCOPE_SESSION)
 public class Book implements BeanNameAware,
         BeanFactoryAware,
         ApplicationContextAware,

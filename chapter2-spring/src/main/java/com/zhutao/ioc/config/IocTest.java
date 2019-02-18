@@ -19,6 +19,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 public class IocTest {
     public static void main(String[] args){
         /**
+         * AnnotationConfigApplicationContext: 使用注解创建ApplicationContext
          * 这里将配置文件AppConfig类传给spring, 会把配置里边的bean装配到spring中
          */
         ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
