@@ -6,6 +6,7 @@ import com.zhutao.ioc.pojo.DataBaseProperties2;
 import com.zhutao.ioc.pojo.User;
 import com.zhutao.ioc.pojo.definition.Person;
 import com.zhutao.ioc.service.UserService;
+import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;

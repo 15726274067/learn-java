@@ -11,17 +11,16 @@ import java.net.Socket;
  */
 public class NIOClient {
     public static void main(String[] args) throws IOException {
-        int count = 10000;
+        int count = 2000;
         for (int i = 0; i<count;i++){
-            send();
+            send("message" + i);
         }
     }
 
-    public static void send() throws IOException {
+    public static void send(String message) throws IOException {
         Socket socket = new Socket("127.0.0.1", 8888);
         OutputStream out = socket.getOutputStream();
-        String s = "hello world";
-        out.write(s.getBytes());
+        out.write(message.getBytes());
         out.close();
     }
 }
