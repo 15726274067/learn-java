@@ -28,4 +28,6 @@ public interface UserService {
     int updateUser(User user);
 
     int removeUser(Long id);
+
+    int insertUsers(List<User> users);
 }
