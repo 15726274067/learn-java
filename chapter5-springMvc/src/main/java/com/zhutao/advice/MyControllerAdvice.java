@@ -63,6 +63,7 @@ public class MyControllerAdvice {
     @ResponseBody
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public Map<String, Object> exceptionHandler(Exception ex){
+        ex.printStackTrace();
         Map<String, Object> map = new HashMap<>();
         map.put("err_code", 500L);
         map.put("err_msg", "internal server error");
