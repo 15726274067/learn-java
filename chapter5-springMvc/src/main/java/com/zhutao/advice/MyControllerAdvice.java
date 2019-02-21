@@ -44,14 +44,28 @@ public class MyControllerAdvice {
         model.addAttribute("project_name", "chapter5-spring");
     }
 
-    @ExceptionHandler(value = CustomException.class)
+    @ExceptionHandler(value = { CustomException.class } )
     @ResponseBody
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public Map<String, Object> exception(CustomException ex){
+    public Map<String, Object> customExceptionHandler(CustomException ex){
         Map<String, Object> map = new HashMap<>();
         map.put("err_code", ex.getCode());
         map.put("err_msg", ex.getMessage());
         return map;
     }
 
+    /**
+     * 非自定义异常的全局异常解析器
+     * @param ex
+     * @return
+     */
+    @ExceptionHandler(value = { Exception.class } )
+    @ResponseBody
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public Map<String, Object> exceptionHandler(Exception ex){
+        Map<String, Object> map = new HashMap<>();
+        map.put("err_code", 500L);
+        map.put("err_msg", "internal server error");
+        return map;
+    }
 }
