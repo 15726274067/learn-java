@@ -12,6 +12,7 @@ import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -38,6 +39,7 @@ public class FileController {
 
         // 获取MultipartFile文件信息
         MultipartFile multipartFile = servletRequest.getFile("file");
+
         String fileName = multipartFile.getName();
         File file = new File(fileName);
 
@@ -50,17 +52,57 @@ public class FileController {
         return dealRestMap(true, "文件上传成功");
     }
 
+    /**
+     * 多文件上传
+     * @param request
+     * @return
+     */
+    @PostMapping("/upload/multipart")
+    @ResponseBody
+    public Map<String, Object> uploadMultipart(HttpServletRequest request){
+        MultipartHttpServletRequest servletRequest = null;
+        if (request instanceof MultipartHttpServletRequest){
+            servletRequest = (MultipartHttpServletRequest) request;
+        } else {
+            return dealRestMap(false, "文件上传失败");
+        }
+
+        // 获取MultipartFile文件信息
+        List<MultipartFile> multipartFiles = servletRequest.getFiles("file");
+        for (MultipartFile mf: multipartFiles){
+            String fileName = mf.getOriginalFilename();
+            File file = new File(System.currentTimeMillis() + fileName);
+
+            try {
+                mf.transferTo(file);
+            } catch (IOException e) {
+                e.printStackTrace();
+                return dealRestMap(false, "文件上传失败");
+            }
+        }
+
+        return dealRestMap(true, "文件上传成功");
+    }
+
+    /**
+     * 推荐
+     * @param file
+     * @return
+     */
     @ResponseBody
     @PostMapping("/upload/part")
     public Map<String, Object> uploadPart(Part file){
-        // 推荐使用
+
         String fileName = file.getSubmittedFileName();
+        System.out.println(file.getName()); // file
+        System.out.println(file.getSubmittedFileName()); // 订单2019_02_19_18_37_06.xlsx
         try {
-            file.write(fileName);
+            file.write(System.currentTimeMillis() + fileName);
         } catch (IOException e) {
             e.printStackTrace();
             return dealRestMap(false, "文件上传失败");
         }
+
         return dealRestMap(true, "文件上传成功");
     }
 
