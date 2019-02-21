@@ -12,6 +12,7 @@
 hs_err_pid*
 
 upload/
+logs/
 
 target/
 !.mvn/wrapper/maven-wrapper.jar
