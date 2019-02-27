@@ -48,6 +48,7 @@
         <activemq.pool.version>5.14.5</activemq.pool.version>
         <springboot.rabbitmq.version>2.1.2.RELEASE</springboot.rabbitmq.version>
         <rocketmq.client.version>4.3.0</rocketmq.client.version>
+        <springboot.elasticsearch.version>2.1.2.RELEASE</springboot.elasticsearch.version>
     </properties>
 
     <!--子工程的依赖版本号管理-->
@@ -154,6 +155,13 @@
                 <groupId>org.apache.rocketmq</groupId>
                 <artifactId>rocketmq-client</artifactId>
                 <version>${rocketmq.client.version}</version>
+            </dependency>
+
+            <!--springboot elasticSearch starter-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
+                <version>${springboot.elasticsearch.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
