@@ -43,10 +43,6 @@ public class SexTypeHandler extends BaseTypeHandler<SexEnum> {
     public SexEnum getNullableResult(ResultSet resultSet, String s) throws SQLException {
         int sexId = resultSet.getInt(s);
 
-        if (sexId != 1 && sexId != 2){
-            return null;
-        }
-
         return SexEnum.getSexById(sexId);
     }
 
@@ -55,10 +51,6 @@ public class SexTypeHandler extends BaseTypeHandler<SexEnum> {
     public SexEnum getNullableResult(ResultSet resultSet, int i) throws SQLException {
         int sexId = resultSet.getInt(i);
 
-        if (sexId != 1 && sexId != 2){
-            return null;
-        }
-
         return SexEnum.getSexById(sexId);
     }
 
@@ -66,10 +58,6 @@ public class SexTypeHandler extends BaseTypeHandler<SexEnum> {
     @Override
     public SexEnum getNullableResult(CallableStatement callableStatement, int i) throws SQLException {
         int sexId = callableStatement.getInt(i);
-
-        if (sexId != 1 && sexId != 2){
-            return null;
-        }
 
         return SexEnum.getSexById(sexId);
     }

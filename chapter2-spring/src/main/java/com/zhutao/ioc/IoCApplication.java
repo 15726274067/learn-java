@@ -13,6 +13,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 public class IoCApplication {
     public static void main( String[] args ) {
-        SpringApplication.run(App.class);
+        SpringApplication.run(IoCApplication.class);
     }
 }

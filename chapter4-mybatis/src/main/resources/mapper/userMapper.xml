@@ -19,6 +19,7 @@ autoMapping: 自动映射等级为启用下,对当前resultMap, 不进行自动�
         <result property="note" column="note"></result>
         <result property="sex" column="sex" typeHandler="com.zhutao.typeHandler.SexTypeHandler"></result>
     </resultMap>
+
     <select id="getUser" parameterType="long" resultType="user">
         select id, user_name as userName, note, sex from t_user where id=#{id}
     </select>
@@ -51,13 +52,13 @@ autoMapping: 自动映射等级为启用下,对当前resultMap, 不进行自动�
                 id = #{user.id}
             </if>
             <if test="user.userName != null and user.userName != ''">
-                user_name = #{user.userName}
+                and user_name = #{user.userName}
             </if>
             <if test="user.note != null">
-                note = #{user.note}
+                and note = #{user.note}
             </if>
             <if test="user.sex != null">
-                sex = #{user.sex}
+                and sex = #{user.sex}
             </if>
         </where> limit #{start}, #{end}
     </select>

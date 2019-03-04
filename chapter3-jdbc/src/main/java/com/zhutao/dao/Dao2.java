@@ -77,8 +77,8 @@ public class Dao2 {
 
             } catch (SQLException e) {
                 e.printStackTrace();
-            }
-            ex.printStackTrace();
+        }
+        ex.printStackTrace();
         } finally {
             if (preparedStatement != null){
                 try {
