@@ -24,8 +24,6 @@
         <module>chapter7-redis</module>
         <module>chapter8-mq</module>
         <module>chapter9-elasticsearch</module>
-        <module>chapter10-dubbo</module>
-        <module>chapter11-zookeeper</module>
     </modules>
 
 
