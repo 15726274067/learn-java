@@ -3,6 +3,7 @@ package com.zhutao.algorithm;
 import org.junit.Test;
 
 import static com.zhutao.algorithm.sort.BubbleSort.bubbleSort;
+import static com.zhutao.algorithm.sort.InsertSort.insertSort;
 
 /**
  * @Author: zhutao
@@ -22,6 +23,23 @@ public class SortTestCase {
         System.out.printf("\n");
 
         bubbleSort(a, a.length);
+        System.out.printf("after  sort:");
+        for (i=0; i<a.length; i++)
+            System.out.printf("%d ", a[i]);
+        System.out.printf("\n");
+    }
+
+    public void testInsertSort(){
+        int i;
+        int[] a = {20,40,30,10,60,50};
+
+        System.out.printf("before sort:");
+        for (i=0; i<a.length; i++)
+            System.out.printf("%d ", a[i]);
+        System.out.printf("\n");
+
+        insertSort(a, a.length);
+
         System.out.printf("after  sort:");
         for (i=0; i<a.length; i++)
             System.out.printf("%d ", a[i]);
