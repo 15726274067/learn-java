@@ -21,7 +21,7 @@ public class BubbleSort {
      *     a -- 待排序的数组
      *     n -- 数组的长度
      */
-    public static void bubbleSort(int[] a, int n) {
+    public static void sort(int[] a, int n) {
         int i,j;
         int flag;                 // 标记
 
