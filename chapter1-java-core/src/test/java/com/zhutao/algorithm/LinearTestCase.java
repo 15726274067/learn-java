@@ -1,6 +1,7 @@
 package com.zhutao.algorithm;
 
 import com.zhutao.algorithm.linear.DoubleLink;
+import com.zhutao.algorithm.linear.GeneralArrayStack;
 import org.junit.Test;
 
 /**
@@ -27,5 +28,27 @@ public class LinearTestCase {
         // 打印出全部的节点
         for (int i=0; i<dlink.size(); i++)
             System.out.println("dlink("+i+")="+ dlink.get(i));
+    }
+
+    @Test
+    public void testStack(){
+        String tmp;
+        GeneralArrayStack<String> stack = new GeneralArrayStack<>(String.class);
+
+        // 将10, 20, 30 依次推入栈中
+        stack.push("10");
+        stack.push("20");
+        stack.push("30");
+
+        // 将“栈顶元素”赋值给tmp，并删除“栈顶元素”
+        tmp = stack.pop();
+        System.out.println("tmp="+tmp);
+
+        // 只将“栈顶”赋值给tmp，不删除该元素.
+        tmp = stack.peek();
+        System.out.println("tmp="+tmp);
+
+        stack.push("40");
+        stack.PrintArrayStack();    // 打印栈
     }
 }
