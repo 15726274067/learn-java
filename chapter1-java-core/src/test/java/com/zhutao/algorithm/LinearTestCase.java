@@ -1,7 +1,8 @@
 package com.zhutao.algorithm;
 
+import com.zhutao.algorithm.linear.ArrayQueue;
 import com.zhutao.algorithm.linear.DoubleLink;
-import com.zhutao.algorithm.linear.GeneralArrayStack;
+import com.zhutao.algorithm.linear.ArrayStack;
 import org.junit.Test;
 
 /**
@@ -33,7 +34,7 @@ public class LinearTestCase {
     @Test
     public void testStack(){
         String tmp;
-        GeneralArrayStack<String> stack = new GeneralArrayStack<>(String.class);
+        ArrayStack<String> stack = new ArrayStack<>(String.class);
 
         // 将10, 20, 30 依次推入栈中
         stack.push("10");
@@ -50,5 +51,32 @@ public class LinearTestCase {
 
         stack.push("40");
         stack.PrintArrayStack();    // 打印栈
+    }
+
+    @Test
+    public void testQueue(){
+        int tmp = 0;
+        ArrayQueue queue = new ArrayQueue(12);
+
+        // 将10, 20, 30 依次推入栈中
+        queue.add(10);
+        queue.add(20);
+        queue.add(30);
+
+        // 将“栈顶元素”赋值给tmp，并删除“栈顶元素”
+        tmp = queue.pop();
+        System.out.printf("tmp=%d\n", tmp);
+
+        // 只将“栈顶”赋值给tmp，不删除该元素.
+        tmp = queue.front();
+        System.out.printf("tmp=%d\n", tmp);
+
+        queue.add(40);
+
+        System.out.printf("isEmpty()=%b\n", queue.isEmpty());
+        System.out.printf("size()=%d\n", queue.size());
+        while (!queue.isEmpty()) {
+            System.out.printf("size()=%d\n", queue.pop());
+        }
     }
 }

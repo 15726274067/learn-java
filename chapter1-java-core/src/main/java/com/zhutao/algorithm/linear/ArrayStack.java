@@ -9,17 +9,17 @@ package com.zhutao.algorithm.linear;
 
 import java.lang.reflect.Array;
 
-public class GeneralArrayStack<T> {
+public class ArrayStack<T> {
 
     private static final int DEFAULT_SIZE = 12;
     private T[] mArray;
     private int count;
 
-    public GeneralArrayStack(Class<T> type) {
+    public ArrayStack(Class<T> type) {
         this(type, DEFAULT_SIZE);
     }
 
-    public GeneralArrayStack(Class<T> type, int size) {
+    public ArrayStack(Class<T> type, int size) {
         // 不能直接使用mArray = new T[DEFAULT_SIZE];
         mArray = (T[]) Array.newInstance(type, size);
         count = 0;
