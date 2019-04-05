@@ -15,7 +15,7 @@ package com.zhutao.algorithm.sort;
 public class BubbleSort {
 
     /*
-     * 冒泡排序(改进版)
+     * 冒泡排序
      *
      * 参数说明：
      *     a -- 待排序的数组
