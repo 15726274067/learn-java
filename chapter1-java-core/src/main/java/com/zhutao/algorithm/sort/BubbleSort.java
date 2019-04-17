@@ -24,7 +24,6 @@ public class BubbleSort {
     public static void sort(int[] a, int n) {
         int i,j;
         int flag;                 // 标记
-
         for (i=n-1; i>0; i--) {
 
             flag = 0;            // 初始化标记为0
