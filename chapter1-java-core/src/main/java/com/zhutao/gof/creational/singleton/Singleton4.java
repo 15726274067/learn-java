@@ -1,4 +1,4 @@
-package com.zhutao.gof.singleton;
+package com.zhutao.gof.creational.singleton;
 
 /**
  * 双重校验锁-线程安全

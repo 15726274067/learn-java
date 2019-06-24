@@ -1,4 +1,4 @@
-package com.zhutao.gof.singleton;
+package com.zhutao.gof.creational.singleton;
 
 /**
  * 当 Singleton 类加载时，静态内部类 SingletonHolder 没有被加载进内存。

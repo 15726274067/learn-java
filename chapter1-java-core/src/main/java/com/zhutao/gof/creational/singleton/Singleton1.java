@@ -1,4 +1,4 @@
-package com.zhutao.gof.singleton;
+package com.zhutao.gof.creational.singleton;
 
 /**
  * 单例模式: 私有的构造函数 + 静态方法返回单例对象

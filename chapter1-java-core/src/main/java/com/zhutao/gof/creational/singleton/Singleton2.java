@@ -1,4 +1,4 @@
-package com.zhutao.gof.singleton;
+package com.zhutao.gof.creational.singleton;
 
 /**
  * 饿汉式 线程安全
