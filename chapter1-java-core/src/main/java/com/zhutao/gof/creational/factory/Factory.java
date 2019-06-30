@@ -15,11 +15,6 @@ public abstract class Factory {
         Product product = factoryMethod();
         System.out.println(product.showName());
     }
-
-    public static void main(String[] args) {
-        ConcertFactoryA factoryA = new ConcertFactoryA();
-        factoryA.doSomething();
-    }
 }
 
 class ConcertFactoryA extends Factory {
@@ -69,5 +64,12 @@ class ConcertFactoryC extends Factory {
         public String showName() {
             return "ConcertProductC";
         }
+    }
+}
+
+class MainTest {
+    private Factory factory;
+    public static void main(String[] args) {
+
     }
 }
