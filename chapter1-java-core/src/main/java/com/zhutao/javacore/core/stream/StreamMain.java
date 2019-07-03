@@ -1,6 +1,6 @@
 package com.zhutao.javacore.core.stream;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -17,7 +17,14 @@ import java.util.List;
  */
 public class StreamMain {
     public static void main(String[] args){
-        List<String> list = new ArrayList<>();
-        final long count = list.stream().limit(2).count();
+        List<String> list = Arrays.asList("aaa", "vvv", "fffff");
+
+        // 简单的stream操作
+        final long count = list.stream().filter( x-> x.length() > 3 ).count();
+        System.out.println(count);
+
+        // 并行stream(parallelStream)
+        boolean match = list.parallelStream().limit(2).allMatch(x -> x.length() == 3);
+        System.out.println(match);
     }
 }
