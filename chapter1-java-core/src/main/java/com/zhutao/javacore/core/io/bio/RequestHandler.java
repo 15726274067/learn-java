@@ -1,9 +1,9 @@
 package com.zhutao.javacore.core.io.bio;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.io.Writer;
 import java.net.Socket;
 
 /**
@@ -21,7 +21,11 @@ public class RequestHandler extends Thread {
     @Override
     public void run() {
         PrintWriter writer = null;
+        BufferedReader reader = null;
         try {
+            reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            reader.lines().forEach(x -> System.out.println("接收到的: " + x));
+
             writer = new PrintWriter(socket.getOutputStream());
             writer.println("hello");
             writer.flush();
