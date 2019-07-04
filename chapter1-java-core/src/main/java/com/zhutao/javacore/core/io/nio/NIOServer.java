@@ -1,4 +1,4 @@
-package com.zhutao.javacore.core.IO.NIO;
+package com.zhutao.javacore.core.io.nio;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;

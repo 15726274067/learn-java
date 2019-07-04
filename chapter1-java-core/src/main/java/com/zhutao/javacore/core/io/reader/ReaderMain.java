@@ -1,4 +1,4 @@
-package com.zhutao.javacore.core.IO.reader;
+package com.zhutao.javacore.core.io.reader;
 
 import java.io.*;
 import java.nio.file.Files;

@@ -1,15 +1,16 @@
-package com.zhutao.javacore.core.IO.NIO;
+package com.zhutao.javacore.core.io.nio;
 
 import java.io.*;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 
 /**
+ * 使用 nio 快速复制文件的实例
  * @Author: zhutao
  * @Date: 2019/2/18 18:49
  * @Version 1.0
  */
-public class Main {
+public class FastCopy {
     public static void main(String[] args){
 
     }

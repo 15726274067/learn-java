@@ -1,4 +1,4 @@
-package com.zhutao.javacore.core.IO.path;
+package com.zhutao.javacore.core.io.path;
 
 /**
  * @Author: zhutao

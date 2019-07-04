@@ -1,4 +1,4 @@
-package com.zhutao.javacore.core.IO.file;
+package com.zhutao.javacore.core.io.file;
 
 import java.io.File;
 import java.io.IOException;

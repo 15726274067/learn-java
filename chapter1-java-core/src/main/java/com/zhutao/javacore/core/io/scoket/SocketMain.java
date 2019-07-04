@@ -1,4 +1,4 @@
-package com.zhutao.javacore.core.IO.scoket;
+package com.zhutao.javacore.core.io.scoket;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
