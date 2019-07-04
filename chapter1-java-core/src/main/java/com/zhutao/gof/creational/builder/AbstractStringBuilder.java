@@ -6,6 +6,8 @@ import java.util.Arrays;
  * 创建者 builder 模式
  *
  * 封装一个对象的构造过程，并允许按步骤构造
+ * 复杂对象的创建工作,由于需求变化,各个子部分变化剧烈,但将他们组合的方法比较稳定
+ * 将构建过程和表示分离,以支持不同的表示
  * 参考 StringBuffer
  * https://docs.oracle.com/javase/8/docs/api/java/lang/StringBuilder.html
  * @Author: zhutao
