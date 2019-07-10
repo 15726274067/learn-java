@@ -1,10 +1,8 @@
 package com.zhutao.javacore.core.io.bio;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.Socket;
+import java.util.Scanner;
 
 /**
  * @Author: zhutao
@@ -23,19 +21,24 @@ public class RequestHandler extends Thread {
         PrintWriter writer = null;
         BufferedReader reader = null;
         try {
-            reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            reader.lines().forEach(x -> System.out.println("接收到的: " + x));
+            Scanner scanner = new Scanner(new InputStreamReader(socket.getInputStream()));
 
+            if ( scanner.hasNext()) {
+                String s = scanner.nextLine();
+                System.out.println(s);
+            }
             writer = new PrintWriter(socket.getOutputStream());
             writer.println("hello");
-            writer.flush();
-
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            if (writer != null) {
-                writer.close();
-                System.out.println("连接关闭");
+            if (socket != null) {
+                try {
+                    socket.close();
+                    System.out.println("连接关闭");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }

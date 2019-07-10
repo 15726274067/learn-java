@@ -42,9 +42,7 @@ public class ThreadPoolMain {
 
     // 当所有非守护线程结束时，程序也就终止，同时会杀死所有守护线程
     public static void daemon(){
-        Thread thread = new Thread(() -> {
-            System.out.println("test daemon");
-        });
+        Thread thread = new Thread(() -> System.out.println("test daemon"));
 
         // 设置为后台守护进程
         thread.setDaemon(true);
