@@ -180,17 +180,6 @@ public class UserController {
      * @InitBinder注解标注方法,使得方法在执行控制器方法前执行
      * 这段也可以使用ControllerAdvice实现
      */
-
-//    @InitBinder
-//    public void initBinder(WebDataBinder binder){
-//        // 绑定验证器
-//        binder.setValidator(new UserValidator());
-//        // 定义日期参数格式，参数不再需要注解@DateTimeFormat,boolean 参数表示是否允许为空
-//        binder.registerCustomEditor(Date.class,
-//                new CustomDateEditor(new SimpleDateFormat("yyyy-MM-dd"),false));
-//
-//    }
-
     @PostMapping("/user/validator")
     @ResponseBody
     public Map<String, Object> validator(
