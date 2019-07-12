@@ -1,4 +1,4 @@
-package com.zhutao.javacore.core.stream;
+package com.zhutao.javacore.core.collection.stream;
 
 import java.util.Arrays;
 import java.util.List;
