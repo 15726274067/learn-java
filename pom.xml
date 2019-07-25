@@ -30,6 +30,7 @@
 
     <!--父工程版本号提取-->
     <properties>
+        <project.version>1.0.1-SNAPSHOT</project.version>
         <springboot.version>2.1.2.RELEASE</springboot.version>
         <springboot.web.version>2.1.2.RELEASE</springboot.web.version>
         <springboot.starter.version>2.1.2.RELEASE</springboot.starter.version>
@@ -52,7 +53,8 @@
         <swagger-ui.version>2.9.2</swagger-ui.version>
         <fastjson.version>1.2.47</fastjson.version>
         <dubbo.version>2.7.1</dubbo.version>
-        <zookeeper.client.version>0.11</zookeeper.client.version>
+        <zookeeper.version>3.4.6</zookeeper.version>
+        <curator.version>2.12.0</curator.version>
     </properties>
 
     <!--子工程的依赖版本号管理-->
@@ -189,14 +191,34 @@
             <!--引入dubbo的依赖-->
             <dependency>
                 <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo</artifactId>
+                <version>${dubbo.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
                 <artifactId>dubbo-spring-boot-starter</artifactId>
                 <version>${dubbo.version}</version>
             </dependency>
+
             <!-- 引入zookeeper的依赖 -->
+            <!-- https://mvnrepository.com/artifact/org.apache.curator/curator-framework -->
             <dependency>
-                <groupId>com.101tec</groupId>
-                <artifactId>zkclient</artifactId>
-                <version>0.10</version>
+                <groupId>org.apache.curator</groupId>
+                <artifactId>curator-framework</artifactId>
+                <version>${curator.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.curator</groupId>
+                <artifactId>curator-recipes</artifactId>
+                <version>${curator.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.zhutao</groupId>
+                <artifactId>dubbo-interface</artifactId>
+                <version>${project.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

@@ -9,10 +9,15 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>dubbo-provider</artifactId>
+    <artifactId>dubbo-consumer</artifactId>
 
     <dependencies>
-        <!--引入dubbo的依赖-->
+        <dependency>
+            <groupId>com.zhutao</groupId>
+            <artifactId>dubbo-interface</artifactId>
+        </dependency>
+
+
         <dependency>
             <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo</artifactId>
@@ -24,11 +29,6 @@
         </dependency>
 
         <dependency>
-            <groupId>com.zhutao</groupId>
-            <artifactId>dubbo-interface</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>org.apache.curator</groupId>
             <artifactId>curator-framework</artifactId>
         </dependency>
@@ -37,6 +37,8 @@
             <groupId>org.apache.curator</groupId>
             <artifactId>curator-recipes</artifactId>
         </dependency>
+
     </dependencies>
+
 
 </project>

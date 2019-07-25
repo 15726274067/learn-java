@@ -19,7 +19,8 @@
 	<modules>
 		<module>dubbo-interface</module>
 		<module>dubbo-provider</module>
-	</modules>
+        <module>dubbo-consumer</module>
+    </modules>
 
 	<dependencies>
 	</dependencies>
