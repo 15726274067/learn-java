@@ -12,8 +12,6 @@
     <artifactId>chapter8-mq</artifactId>
 
     <name>chapter8-mq</name>
-    <!-- FIXME change it to the project's website -->
-    <url>http://www.example.com</url>
 
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-amqp -->
