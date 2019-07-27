@@ -21,7 +21,8 @@ public class ThreadLocalMain {
 
     private static class Test {
         public static void main(String[] args){
-            
+            ThreadLocalMain main = new ThreadLocalMain();
+            main.start();
         }
     }
 }
