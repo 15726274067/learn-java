@@ -12,3 +12,8 @@ services:
       dockerfile: DockerFile
     ports:
       - 10103:10102
+
+networks:
+  default:
+    external:
+      name: example_default
