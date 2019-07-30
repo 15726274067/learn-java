@@ -6,13 +6,16 @@ services:
       dockerfile: DockerFile
     ports:
       - 10102:10102
+    external_links:
+      - nacos-standalone:nacos
   web2:
     build:
       context: ./dubbo-provider
       dockerfile: DockerFile
     ports:
       - 10103:10102
-
+    external_links:
+      - nacos-standalone:nacos
 networks:
   default:
     external:
