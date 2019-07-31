@@ -38,10 +38,7 @@ public class NIOServer extends Thread {
                     ServerSocketChannel server = (ServerSocketChannel) selectionKey.channel();
                     SocketChannel socket = server.accept();
 
-                    ByteBuffer buffer = ByteBuffer.allocateDirect(1000);
-                    int read = socket.read(buffer);
-
-                    System.out.println("server receive: " + buffer.toString());
+                    System.out.println("server receive: " + readDataFromSocketChannel(socket));
 
                     socket.write(Charset.defaultCharset().encode("hello nio"));
                     System.out.println("server send: " + "hello nio");
@@ -59,5 +56,29 @@ public class NIOServer extends Thread {
     public static void main(String[] args) {
         NIOServer server = new NIOServer();
         server.start();
+    }
+
+    private static String readDataFromSocketChannel(SocketChannel sChannel) throws IOException {
+
+        ByteBuffer buffer = ByteBuffer.allocate(1024);
+        StringBuilder data = new StringBuilder();
+
+        while (true) {
+
+            buffer.clear();
+            int n = sChannel.read(buffer);
+            if (n == -1) {
+                break;
+            }
+            buffer.flip();
+            int limit = buffer.limit();
+            char[] dst = new char[limit];
+            for (int i = 0; i < limit; i++) {
+                dst[i] = (char) buffer.get(i);
+            }
+            data.append(dst);
+            buffer.clear();
+        }
+        return data.toString();
     }
 }
