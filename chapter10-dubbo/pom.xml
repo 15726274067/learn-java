@@ -20,6 +20,7 @@
 		<module>dubbo-interface</module>
 		<module>dubbo-provider</module>
         <module>dubbo-consumer</module>
+        <module>dubbo-provider1</module>
     </modules>
 
 	<dependencies>

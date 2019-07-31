@@ -1,0 +1,19 @@
+version: '3'
+services:
+  web1:
+    build:
+      context: ./dubbo-provider
+      dockerfile: DockerFile
+    ports:
+      - 10102:10102
+  web2:
+    build:
+      context: ./dubbo-provider
+      dockerfile: DockerFile
+    ports:
+      - 10103:10102
+
+networks:
+  default:
+    external:
+      name: example_default
