@@ -8,7 +8,7 @@ import java.util.concurrent.*;
  * @Date: 2019/2/19 15:45
  * @Version 1.0
  */
-public class ThreadMain {
+public class ThreadCreationMain {
     public static void main(String[] args){
 //        createThread();
 //        createFutureTask();
@@ -57,7 +57,7 @@ public class ThreadMain {
     }
 
     public static void createFutureTask() {
-        FutureTask<Integer> futureTask = new FutureTask<Integer>(() -> 1);
+        FutureTask<Integer> futureTask = new FutureTask<>(() -> 1);
 
         Thread thread = new Thread(futureTask);
 

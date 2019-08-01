@@ -1,8 +1,11 @@
 package com.zhutao.javacore.io.nio;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.InetAddress;
 import java.net.Socket;
+import java.util.Arrays;
 
 /**
  * @Author: zhutao
@@ -18,9 +21,17 @@ public class NIOClient {
     }
 
     public static void send(String message) throws IOException {
-        Socket socket = new Socket("127.0.0.1", 8888);
+        Socket socket = new Socket(InetAddress.getLocalHost(), 10888);
         OutputStream out = socket.getOutputStream();
         out.write(message.getBytes());
-        out.close();
+        System.out.println("client send: " + message);
+        InputStream inputStream = socket.getInputStream();
+        byte[] bytes = new byte[1000];
+        while (inputStream.read(bytes) > 0) {
+
+        }
+
+        System.out.println("client receive: " + new String(bytes));
+        socket.close();
     }
 }
