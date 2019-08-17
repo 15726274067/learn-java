@@ -1,5 +1,7 @@
 package com.zhutao.exception;
 
+import org.springframework.beans.factory.annotation.Value;
+
 /**
  * @Author: zhutao
  * @Date: 2019/2/21 15:08

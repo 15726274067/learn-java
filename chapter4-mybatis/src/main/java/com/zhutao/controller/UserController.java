@@ -71,11 +71,6 @@ public class UserController {
 
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("result", users);
-
-        /**
-         * TODO: 找到分页前的数量
-         */
-//        hashMap.put("count", users.size());
         return hashMap;
     }
 
