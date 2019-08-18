@@ -2,12 +2,16 @@ package com.zhutao.rabbitmq.service.impl;
 
 import com.zhutao.pojo.User;
 import com.zhutao.rabbitmq.service.RabbitmqService;
+import org.springframework.amqp.core.AcknowledgeMode;
 import org.springframework.amqp.core.Message;
+import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+
+import java.util.Random;
 
 
 /**
@@ -24,6 +28,8 @@ public class RabbitmqServiceImpl implements RabbitmqService, RabbitTemplate.Conf
     @Value("${rabbitmq.queue.user}")
     private String userRouting = null;
 
+    @Value("${rabbitmq.queue.ack}")
+    private String ackQueueName;
     /**
      * 注入由springboot自动配置的rabbit template
      */
@@ -35,9 +41,8 @@ public class RabbitmqServiceImpl implements RabbitmqService, RabbitTemplate.Conf
         System.out.println("发送消息 msg: " + msg);
         // 设置回调
         rabbitTemplate.setConfirmCallback(this);
-
         // 转换并发送消息
-        rabbitTemplate.convertAndSend(msgRouting, msg);
+        rabbitTemplate.convertAndSend("fanout_exchange" ,msgRouting, msg);
     }
 
     @Override
@@ -46,6 +51,15 @@ public class RabbitmqServiceImpl implements RabbitmqService, RabbitTemplate.Conf
         rabbitTemplate.setConfirmCallback(this);
 
         rabbitTemplate.convertAndSend(userRouting, user);
+    }
+
+
+    public void sendAckMsg(String msg) {
+        System.out.println("发送ack消息 msg: " + msg);
+        rabbitTemplate.setConfirmCallback(this);
+        // 转换并发送消息
+        // 发送时需要给出唯一的标识(CorrelationData)
+        rabbitTemplate.convertAndSend("", ackQueueName, msg, new CorrelationData(Math.random() + ""));
     }
 
     /**
@@ -57,9 +71,11 @@ public class RabbitmqServiceImpl implements RabbitmqService, RabbitTemplate.Conf
     @Override
     public void confirm(CorrelationData correlationData, boolean ack, String cause) {
         if (ack){
-            System.out.println("消息消费成功: " );
+            String id = correlationData==null? "": correlationData.getId();
+            System.out.println("消息投递成功 id: " + id);
+
         } else {
-            System.out.println("消息消费失败: " + cause);
+            System.out.println("消息投递失败" + cause);
         }
     }
 }

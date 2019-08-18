@@ -11,4 +11,6 @@ public interface RabbitmqService {
     void sendMsg(String msg);
 
     void sendUser(User user);
+
+    void sendAckMsg(String msg);
 }
