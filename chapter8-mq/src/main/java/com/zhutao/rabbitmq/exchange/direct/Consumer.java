@@ -36,6 +36,9 @@ public class Consumer {
             public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException {
                 String msg =new String(body);
                 System.out.println("消费者1收到消息: " + msg);
+                // 拒绝消息, 会重新进队列
+                // 需要保证消费的幂等
+                channel.basicNack(envelope.getDeliveryTag(), false, true);
             }
         };
 

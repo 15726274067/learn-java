@@ -22,7 +22,8 @@ public class Consumer {
         // 获取通道
         Channel channel = connection.createChannel();
         // 声明队列,重复声明会忽略
-        channel.queueDeclare(FANOUT_EXCHANGE_QUEUE1, false, false, false, null);
+        // 队列的持久化
+        channel.queueDeclare(FANOUT_EXCHANGE_QUEUE1, true, false, false, null);
 
         // 绑定队列到交换机
         channel.queueBind(FANOUT_EXCHANGE_QUEUE1, FANOUT_EXCHANGE, "");

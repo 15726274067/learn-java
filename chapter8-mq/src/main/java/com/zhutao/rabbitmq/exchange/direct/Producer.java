@@ -2,6 +2,7 @@ package com.zhutao.rabbitmq.exchange.direct;
 
 import com.rabbitmq.client.BuiltinExchangeType;
 import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.ConfirmCallback;
 import com.rabbitmq.client.Connection;
 import com.zhutao.rabbitmq.simple.RabbitmqConnectionUtil;
 
