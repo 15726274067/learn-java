@@ -59,35 +59,36 @@ public class RedisController {
         map.put("field3", "value3");
 
         redisTemplate.opsForHash().putAll(redisKey, map);
-
         redisTemplate.opsForHash().put(redisKey, "field4", "value4");
+        redisTemplate.opsForHash().size(redisKey);
 
         BoundHashOperations boundHashOperations = redisTemplate.boundHashOps(redisKey);
         boundHashOperations.put("field5", "value5");
         System.out.println("size: " + boundHashOperations.size());
 
         Map<String, Object> result = new HashMap<>();
-        result.put("result", redisTemplate.opsForHash().entries(redisKey));
+        result.put("result", boundHashOperations.entries());
         return result;
     }
 
 
     @GetMapping("/list")
-    public Map<String, Object> testList(){
+    public Map<String, Object> testList() {
         String redisKey = "list_redis:template:key";
         List<String> list = new ArrayList<>();
         for (int i=0; i< 10; i++){
             list.add("value" + i);
         }
-        Long res = redisTemplate.opsForList().leftPushAll(redisKey, list);
+        BoundListOperations boundListOps = redisTemplate.boundListOps(redisKey);
+        Long res = boundListOps.leftPushAll(list);
         System.out.println(res);
 
-        System.out.println(redisTemplate.opsForList().range(redisKey, 0 ,-1));
+        System.out.println(boundListOps.range(0, -1));
 
-        System.out.println(redisTemplate.opsForList().rightPop(redisKey));
+        System.out.println(boundListOps.rightPop());
 
-        System.out.println(redisTemplate.opsForList().range(redisKey, 0 ,-1));
-
+        System.out.println(boundListOps.range(0 ,-1));
+        //
         Jedis jedis = (Jedis) stringRedisTemplate.getConnectionFactory().getConnection().getNativeConnection();
 
         // [list_redis:template:key, value9]
@@ -141,7 +142,7 @@ public class RedisController {
                 redisTemplate.multi();
                 operations.opsForValue().set(key1, "value1");
                 operations.opsForValue().set(key2, "value2");
-                Object value1= operations.opsForValue().get("trans:key1");
+                Object value1= operations.opsForValue().get(key1);
                 System.out.println("命令在队列中,没有被执行,所以这里的值为null: " + value1);
                 redisTemplate.exec();
                 return null;
@@ -158,7 +159,7 @@ public class RedisController {
     public Map<String, Object> testPipeLine(){
         String key1 = "key";
         Long start = System.currentTimeMillis();
-        
+
         redisTemplate.executePipelined(new SessionCallback() {
             @Override
             public Object execute(RedisOperations operations) throws DataAccessException {
