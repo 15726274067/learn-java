@@ -1,6 +1,11 @@
 package com.zhutao;
 
+import io.netty.channel.nio.NioEventLoopGroup;
 import org.mybatis.spring.annotation.MapperScan;
+import org.redisson.Redisson;
+import org.redisson.api.RedissonClient;
+import org.redisson.client.codec.Codec;
+import org.redisson.config.Config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,6 +20,7 @@ import org.springframework.data.redis.listener.Topic;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.ClassUtils;
 
 import javax.annotation.PostConstruct;
 
@@ -23,6 +29,29 @@ import javax.annotation.PostConstruct;
 @MapperScan(basePackages = "com.zhutao", annotationClass = Repository.class)
 public class RedisApplication
 {
+    private String address="redis://localhost:6379";
+    private int connectionMinimumIdleSize = 10;
+    private int idleConnectionTimeout=10000;
+    private int pingTimeout=1000;
+    private int connectTimeout=10000;
+    private int timeout=3000;
+    private int retryAttempts=3;
+    private int retryInterval=1500;
+    private int reconnectionTimeout=3000;
+    private int failedAttempts=3;
+    private String password = null;
+    private int subscriptionsPerConnection=5;
+    private String clientName=null;
+    private int subscriptionConnectionMinimumIdleSize = 1;
+    private int subscriptionConnectionPoolSize = 50;
+    private int connectionPoolSize = 64;
+    private int database = 0;
+    private boolean dnsMonitoring = false;
+    private int dnsMonitoringInterval = 5000;
+
+    private int thread; //当前处理核数量 * 2
+
+    private String codec="org.redisson.codec.JsonJacksonCodec";
 
     @Autowired
     private RedisTemplate redisTemplate = null;
@@ -100,5 +129,38 @@ public class RedisApplication
         // 添加监听器
         container.addMessageListener(redisMessageListener, topic);
         return container;
+    }
+
+    /**
+     * 整合redission
+     * @return
+     * @throws Exception
+     */
+    @Bean(destroyMethod = "shutdown")
+    RedissonClient redisson() throws Exception {
+        Config config = new Config();
+        config.useSingleServer().setAddress(address)
+                .setConnectionMinimumIdleSize(connectionMinimumIdleSize)
+                .setConnectionPoolSize(connectionPoolSize)
+                .setDatabase(database)
+                .setDnsMonitoring(dnsMonitoring)
+                .setDnsMonitoringInterval(dnsMonitoringInterval)
+                .setSubscriptionConnectionMinimumIdleSize(subscriptionConnectionMinimumIdleSize)
+                .setSubscriptionConnectionPoolSize(subscriptionConnectionPoolSize)
+                .setSubscriptionsPerConnection(subscriptionsPerConnection)
+                .setClientName(clientName)
+                .setFailedAttempts(failedAttempts)
+                .setRetryAttempts(retryAttempts)
+                .setRetryInterval(retryInterval)
+                .setReconnectionTimeout(reconnectionTimeout)
+                .setTimeout(timeout)
+                .setConnectTimeout(connectTimeout)
+                .setIdleConnectionTimeout(idleConnectionTimeout)
+                .setPingTimeout(pingTimeout)
+                .setPassword(password);
+        config.setThreads(thread);
+        config.setEventLoopGroup(new NioEventLoopGroup());
+        config.setUseLinuxNativeEpoll(false);
+        return Redisson.create(config);
     }
 }
