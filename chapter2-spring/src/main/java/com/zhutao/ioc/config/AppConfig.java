@@ -3,6 +3,10 @@ package com.zhutao.ioc.config;
 import com.zhutao.ioc.condition.DatabaseCondition;
 import com.zhutao.ioc.filter.MyFilter;
 import com.zhutao.ioc.pojo.User;
+import com.zhutao.ioc.service.BookService;
+import com.zhutao.ioc.service.OtherService;
+import com.zhutao.ioc.service.impl.BookServiceImpl;
+import com.zhutao.ioc.service.impl.OtherServiceImpl;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.apache.commons.dbcp2.BasicDataSourceFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -57,8 +61,24 @@ public class AppConfig {
         user.setId(1L);
         user.setName("zhutao");
         user.setNote("note_1");
+        System.out.println("init user");
         return user;
     }
+
+    // 如果一个bean依赖另一个bean，则直接调用对应JavaConfig类中依赖bean的创建方法即可
+    // 这里直接调用initUser()
+    @Bean
+    public BookService bookService() {
+        User user = initUser();
+        return new BookServiceImpl(user);
+    }
+
+    @Bean
+    public OtherService otherService() {
+        User user = initUser();
+        return new OtherServiceImpl(user);
+    }
+
 
     /**
      * 自定义第三方bean

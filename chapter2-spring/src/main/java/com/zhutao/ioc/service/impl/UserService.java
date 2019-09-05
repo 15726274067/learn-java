@@ -1,4 +1,4 @@
-package com.zhutao.ioc.service;
+package com.zhutao.ioc.service.impl;
 
 import com.zhutao.ioc.pojo.User;
 import org.springframework.stereotype.Service;

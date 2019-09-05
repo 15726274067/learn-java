@@ -22,11 +22,11 @@ public class User {
         this.name = name;
         this.note = note;
     }
-
-    @Override
-    public String toString(){
-        return MessageFormat.format("id: {0}, name: {1}, note: {2}", id, name, note);
-    }
+//
+//    @Override
+//    public String toString(){
+//        return MessageFormat.format("id: {0}, name: {1}, note: {2}", id, name, note);
+//    }
     public Long getId() {
         return id;
     }
