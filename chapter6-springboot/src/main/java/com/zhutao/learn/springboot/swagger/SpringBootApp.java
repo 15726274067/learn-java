@@ -1,4 +1,4 @@
-package com.zhutao.learn.springboot;
+package com.zhutao.learn.springboot.swagger;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

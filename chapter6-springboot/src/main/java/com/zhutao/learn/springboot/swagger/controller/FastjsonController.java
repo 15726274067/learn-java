@@ -1,4 +1,4 @@
-package com.zhutao.learn.springboot.controller;
+package com.zhutao.learn.springboot.swagger.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.web.bind.annotation.RequestMapping;

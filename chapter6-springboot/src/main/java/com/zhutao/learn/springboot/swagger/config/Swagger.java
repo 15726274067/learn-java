@@ -1,4 +1,4 @@
-package com.zhutao.learn.springboot.config;
+package com.zhutao.learn.springboot.swagger.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,7 +23,7 @@ public class Swagger {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.zhutao.learn.springboot.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.zhutao.learn.springboot.swagger.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }

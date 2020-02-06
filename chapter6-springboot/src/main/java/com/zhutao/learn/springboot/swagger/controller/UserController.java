@@ -1,4 +1,4 @@
-package com.zhutao.learn.springboot.controller;
+package com.zhutao.learn.springboot.swagger.controller;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
