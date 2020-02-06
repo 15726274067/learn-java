@@ -2,13 +2,13 @@ package com.zhutao;
 
 import static org.junit.Assert.assertTrue;
 
-import com.zhutao.lru.LRUCache;
+import com.zhutao.learn.redis.lru.LRUCache;
 import org.junit.Test;
 
 /**
  * Unit test for simple App.
  */
-public class AppTest 
+public class AppTest
 {
     /**
      * Rigorous Test :-)

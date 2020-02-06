@@ -12,7 +12,7 @@
     <artifactId>chapter2-spring</artifactId>
 
     <name>chapter2-spring</name>
-    
+
     <dependencies>
         <!--dbcp datasource-->
         <dependency>
@@ -41,7 +41,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.zhutao.ioc.config.IocTest</mainClass>
+                    <mainClass>com.zhutao.learn.spring.ioc.config.IocTest</mainClass>
                 </configuration>
             </plugin>
         </plugins>
