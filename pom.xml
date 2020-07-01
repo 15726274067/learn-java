@@ -37,7 +37,7 @@
         <junit.version>4.11</junit.version>
         <configuration.processor.version>2.1.2.RELEASE</configuration.processor.version>
         <dbcp2.version>2.5.0</dbcp2.version>
-        <mysql.connector.version>8.0.13</mysql.connector.version>
+        <mysql.connector.version>8.0.16</mysql.connector.version>
         <aspectj.version>1.9.2</aspectj.version>
         <springboot.jdbc.version>2.1.2.RELEASE</springboot.jdbc.version>
         <druid.version>1.0.18</druid.version>
