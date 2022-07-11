@@ -31,7 +31,7 @@
     <!--父工程版本号提取-->
     <properties>
         <project.version>1.0.1-SNAPSHOT</project.version>
-        <springboot.version>2.1.2.RELEASE</springboot.version>
+        <springboot.version>2.2.11.RELEASE</springboot.version>
         <springboot.web.version>2.1.2.RELEASE</springboot.web.version>
         <springboot.starter.version>2.1.2.RELEASE</springboot.starter.version>
         <junit.version>4.11</junit.version>
